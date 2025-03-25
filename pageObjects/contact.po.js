@@ -55,7 +55,7 @@ exports.ContactPage = class ContactPage {
     postalCode, 
     country
   ) {
-    this.page.goto('/addContact');
+    await this.page.goto('/addContact');
     await this.page.locator(this.firstName).fill(firstName);
     await this.page.locator(this.lastName).fill(lastName);
     await this.page.locator(this.birthdate).fill(birthdate);
@@ -117,8 +117,8 @@ exports.ContactPage = class ContactPage {
     email, 
     phone
   ) {
-    this.page.goto('/contactList');
     await this.page.waitForTimeout(2000);
+    
     await expect(this.page.locator(this.updatedFirstName)).toHaveText(firstName);
     await expect(this.page.locator(this.updatedLastName)).toHaveText(lastName);
     await expect(this.page.locator(this.updatedBirthdate)).toHaveText(birthdate);
