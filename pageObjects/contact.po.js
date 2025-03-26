@@ -198,8 +198,6 @@ exports.ContactPage = class ContactPage {
     for (const row of contactTableRows) {
       const idColumn = await row.locator('//td').first();
       const actualid = await idColumn.textContent();
-      console.log(actualid, contactId);
-      
 
       if(actualid === contactId) {
         row.click();
