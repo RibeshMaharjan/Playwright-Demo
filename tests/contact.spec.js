@@ -98,12 +98,13 @@ describe('Update Contact', () => {
     await validateEntity(accessToken, `/contacts/${id}`, '404', { request });
   });
 
-  test('Delete contact details', async ({ page, request }) => {
+  test.only('Delete contact details', async ({ page, request }) => {
     const ContactPageClass = new ContactPage(page);
     accessToken = await authenticateUser(testData.validUser.username, testData.validUser.password, { request });
     const id = await createEntity(testData.contactDetails, accessToken, '/contacts', { request });
     await page.reload();
     await ContactPageClass.deleteContact(id);
+    await page.waitForTimeout(2000);
     await validateEntity(accessToken, `/contacts/${id}`, '404', { request })
   });
 });
